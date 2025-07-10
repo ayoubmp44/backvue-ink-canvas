@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navigation from "@/components/Navigation";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -24,9 +25,22 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            business_type: formData.businessType,
+            project_details: formData.projectDetails
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "Request Submitted!",
         description: "Thank you! We'll contact you within 24 hours to schedule your discovery call.",
@@ -39,8 +53,16 @@ const Contact = () => {
         businessType: "",
         projectDetails: ""
       });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "There was an issue submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {

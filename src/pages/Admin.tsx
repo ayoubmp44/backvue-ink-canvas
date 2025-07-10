@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Eye, Edit, Trash2, Search, Filter, Plus, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Admin = () => {
   const { toast } = useToast();
@@ -21,39 +22,33 @@ const Admin = () => {
   const [selectedLead, setSelectedLead] = useState<any>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Mock leads data
-  const [leads, setLeads] = useState([
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john@example.com",
-      businessType: "Startup",
-      projectDetails: "Need promotional video for product launch",
-      status: "New",
-      createdAt: "2024-01-15",
-      notes: ""
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      email: "sarah@company.com",
-      businessType: "Enterprise",
-      projectDetails: "Corporate training videos series",
-      status: "Contacted",
-      createdAt: "2024-01-14",
-      notes: "Interested in 10-part series. Budget: $50k"
-    },
-    {
-      id: 3,
-      name: "Mike Davis",
-      email: "mike@agency.com",
-      businessType: "Marketing Agency",
-      projectDetails: "Social media content for client campaigns",
-      status: "Booked",
-      createdAt: "2024-01-13",
-      notes: "Signed contract. Project starts Feb 1st"
+  const [leads, setLeads] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
+  const fetchLeads = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('leads')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        throw error;
+      }
+
+      setLeads(data || []);
+    } catch (error) {
+      console.error('Error fetching leads:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load leads data",
+        variant: "destructive"
+      });
     }
-  ]);
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,25 +68,61 @@ const Admin = () => {
     }
   };
 
-  const updateLeadStatus = (id: number, newStatus: string) => {
-    setLeads(leads.map(lead => 
-      lead.id === id ? { ...lead, status: newStatus } : lead
-    ));
-    toast({
-      title: "Status Updated",
-      description: `Lead status changed to ${newStatus}`
-    });
+  const updateLeadStatus = async (id: string, newStatus: string) => {
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .update({ status: newStatus })
+        .eq('id', id);
+
+      if (error) {
+        throw error;
+      }
+
+      setLeads(leads.map(lead => 
+        lead.id === id ? { ...lead, status: newStatus } : lead
+      ));
+      toast({
+        title: "Status Updated",
+        description: `Lead status changed to ${newStatus}`
+      });
+    } catch (error) {
+      console.error('Error updating lead status:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update lead status",
+        variant: "destructive"
+      });
+    }
   };
 
-  const updateLeadNotes = (id: number, notes: string) => {
-    setLeads(leads.map(lead => 
-      lead.id === id ? { ...lead, notes } : lead
-    ));
-    setIsEditModalOpen(false);
-    toast({
-      title: "Notes Updated",
-      description: "Lead notes have been updated successfully"
-    });
+  const updateLeadNotes = async (id: string, notes: string) => {
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .update({ notes })
+        .eq('id', id);
+
+      if (error) {
+        throw error;
+      }
+
+      setLeads(leads.map(lead => 
+        lead.id === id ? { ...lead, notes } : lead
+      ));
+      setIsEditModalOpen(false);
+      toast({
+        title: "Notes Updated",
+        description: "Lead notes have been updated successfully"
+      });
+    } catch (error) {
+      console.error('Error updating lead notes:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update lead notes",
+        variant: "destructive"
+      });
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -274,13 +305,13 @@ const Admin = () => {
                     <tr key={lead.id} className="border-b border-border hover:bg-accent/50">
                       <td className="py-3 px-4 font-medium">{lead.name}</td>
                       <td className="py-3 px-4 text-muted-foreground">{lead.email}</td>
-                      <td className="py-3 px-4">{lead.businessType}</td>
+                      <td className="py-3 px-4">{lead.business_type}</td>
                       <td className="py-3 px-4">
                         <Badge className={`${getStatusColor(lead.status)} text-white`}>
                           {lead.status}
                         </Badge>
                       </td>
-                      <td className="py-3 px-4 text-muted-foreground">{lead.createdAt}</td>
+                      <td className="py-3 px-4 text-muted-foreground">{new Date(lead.created_at).toLocaleDateString()}</td>
                       <td className="py-3 px-4">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -336,9 +367,9 @@ const Admin = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div>
+                       <div>
                     <Label>Business Type</Label>
-                    <p>{selectedLead.businessType}</p>
+                    <p>{selectedLead.business_type}</p>
                   </div>
                   <div>
                     <Label>Status</Label>
@@ -349,7 +380,7 @@ const Admin = () => {
                 </div>
                 <div>
                   <Label>Project Details</Label>
-                  <p className="text-sm bg-accent/50 p-3 rounded-lg">{selectedLead.projectDetails}</p>
+                  <p className="text-sm bg-accent/50 p-3 rounded-lg">{selectedLead.project_details}</p>
                 </div>
                 <div>
                   <Label>Notes</Label>
