@@ -73,19 +73,19 @@ const Contact = () => {
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      details: "hello@backvue.com",
-      action: "mailto:hello@backvue.com"
+      details: "contact.backvue@gmail.com",
+      action: "mailto:contact.backvue@gmail.com"
     },
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      details: "+212 777-300811",
+      action: "tel:+212777300811"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Location",
-      details: "Los Angeles, CA",
+      details: "Morocco, Agadir",
       action: null
     }
   ];
