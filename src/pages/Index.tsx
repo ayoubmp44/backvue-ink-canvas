@@ -4,30 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const services = [
     {
       icon: <Play className="h-8 w-8" />,
-      title: "Video Editing",
-      description: "Professional video editing with cinematic quality and attention to detail."
+      title: t('videoEditing'),
+      description: t('videoEditingDesc')
     },
     {
       icon: <Eye className="h-8 w-8" />,
-      title: "Color Grading",
-      description: "Advanced color correction and grading to enhance visual storytelling."
+      title: t('colorGrading'),
+      description: t('colorGradingDesc')
     },
     {
       icon: <Clock className="h-8 w-8" />,
-      title: "Fast Turnaround",
-      description: "Quick delivery without compromising on quality or creative vision."
+      title: t('fastTurnaround'),
+      description: t('fastTurnaroundDesc')
     },
     {
       icon: <Award className="h-8 w-8" />,
-      title: "Premium Quality",
-      description: "Industry-standard results that exceed expectations every time."
+      title: t('premiumQuality'),
+      description: t('premiumQualityDesc')
     }
   ];
 
@@ -40,13 +42,12 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text leading-tight">
-              Premium Video
+              {t('heroTitle')}
               <br />
-              Editing Agency
+              {t('heroTitleSecond')}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Transform your raw footage into compelling stories that captivate audiences 
-              and drive results for your brand.
+              {t('heroSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -54,7 +55,7 @@ const Index = () => {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
                 onClick={() => navigate("/contact")}
               >
-                Start Your Project
+                {t('startProject')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -63,7 +64,7 @@ const Index = () => {
                 className="border-border hover:bg-accent transition-all duration-300"
                 onClick={() => navigate("/portfolio")}
               >
-                View Our Work
+                {t('viewWork')}
               </Button>
             </div>
           </div>
@@ -75,10 +76,10 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              What We Do
+              {t('whatWeDo')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Professional video editing services that bring your vision to life
+              {t('servicesSubtitle')}
             </p>
           </div>
 
@@ -106,19 +107,18 @@ const Index = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl text-center animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Create Something
-            <span className="gradient-text"> Amazing?</span>
+            {t('ctaTitle')}
+            <span className="gradient-text">{t('ctaTitleHighlight')}</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and discover how we can bring your vision to life 
-            with professional video editing.
+            {t('ctaSubtitle')}
           </p>
           <Button 
             size="lg" 
             className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
             onClick={() => navigate("/contact")}
           >
-            Schedule Discovery Call
+            {t('scheduleCall')}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>

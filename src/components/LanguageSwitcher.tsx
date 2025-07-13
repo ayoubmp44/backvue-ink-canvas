@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,22 +6,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const LanguageSwitcher = () => {
-  const [currentLang, setCurrentLang] = useState<'en' | 'ar'>('en');
-
-  const toggleLanguage = (lang: 'en' | 'ar') => {
-    setCurrentLang(lang);
-    
-    // Apply font and direction changes to document
-    if (lang === 'ar') {
-      document.documentElement.dir = 'rtl';
-      document.documentElement.className = document.documentElement.className.replace(/font-\w+/g, '') + ' font-arabic';
-    } else {
-      document.documentElement.dir = 'ltr';
-      document.documentElement.className = document.documentElement.className.replace(/font-\w+/g, '') + ' font-sans';
-    }
-  };
+  const { language, setLanguage } = useLanguage();
 
   return (
     <DropdownMenu>
@@ -34,14 +21,14 @@ export const LanguageSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-32">
         <DropdownMenuItem 
-          onClick={() => toggleLanguage('en')}
-          className={currentLang === 'en' ? 'bg-accent' : ''}
+          onClick={() => setLanguage('en')}
+          className={language === 'en' ? 'bg-accent' : ''}
         >
           <span className="text-sm">English</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
-          onClick={() => toggleLanguage('ar')}
-          className={currentLang === 'ar' ? 'bg-accent' : ''}
+          onClick={() => setLanguage('ar')}
+          className={language === 'ar' ? 'bg-accent' : ''}
         >
           <span className="text-sm font-arabic">العربية</span>
         </DropdownMenuItem>

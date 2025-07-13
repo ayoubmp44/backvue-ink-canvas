@@ -4,14 +4,16 @@ import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navItems = [
-    { to: "/", label: "Home" },
-    { to: "/portfolio", label: "Portfolio" },
-    { to: "/contact", label: "Contact" },
+    { to: "/", label: t('home') },
+    { to: "/portfolio", label: t('portfolio') },
+    { to: "/contact", label: t('contact') },
   ];
 
   return (

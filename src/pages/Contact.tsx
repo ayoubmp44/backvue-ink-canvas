@@ -10,9 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Navigation from "@/components/Navigation";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,7 +44,7 @@ const Contact = () => {
       }
 
       toast({
-        title: "Request Submitted!",
+        title: t('messageSent'),
         description: "Thank you! We'll contact you within 24 hours to schedule your discovery call.",
       });
       
@@ -57,7 +59,7 @@ const Contact = () => {
       console.error('Error submitting form:', error);
       toast({
         title: "Error",
-        description: "There was an issue submitting your request. Please try again.",
+        description: t('messageError'),
         variant: "destructive"
       });
     } finally {
@@ -72,19 +74,19 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
-      title: "Email",
+      title: t('emailTitle'),
       details: "contact.backvue@gmail.com",
       action: "mailto:contact.backvue@gmail.com"
     },
     {
       icon: <Phone className="h-5 w-5" />,
-      title: "Phone",
+      title: t('phoneTitle'),
       details: "+212 777-300811",
       action: "tel:+212777300811"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
-      title: "Location",
+      title: t('locationTitle'),
       details: "Morocco, Agadir",
       action: null
     }
@@ -99,11 +101,10 @@ const Contact = () => {
           {/* Header */}
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-              Let's Create Together
+              {t('contactTitle')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Ready to transform your raw footage into compelling stories? 
-              Schedule a discovery call to discuss your project.
+              {t('contactSubtitle')}
             </p>
           </div>
 
@@ -112,34 +113,34 @@ const Contact = () => {
             <div className="lg:col-span-2">
               <Card className="bg-card border-border animate-scale-in">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Request Discovery Call</CardTitle>
+                  <CardTitle className="text-2xl">{t('contactFormTitle')}</CardTitle>
                   <p className="text-muted-foreground">
-                    Tell us about your project and we'll schedule a call to discuss how we can help.
+                    {t('contactFormSubtitle')}
                   </p>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Name *</Label>
+                        <Label htmlFor="name">{t('fullName')} *</Label>
                         <Input
                           id="name"
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange("name", e.target.value)}
-                          placeholder="Your full name"
+                          placeholder={t('fullNamePlaceholder')}
                           required
                           className="bg-input border-border"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email">{t('email')} *</Label>
                         <Input
                           id="email"
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
-                          placeholder="your@email.com"
+                          placeholder={t('emailPlaceholder')}
                           required
                           className="bg-input border-border"
                         />
@@ -147,30 +148,30 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="businessType">Business Type *</Label>
+                      <Label htmlFor="businessType">{t('businessType')} *</Label>
                       <Select value={formData.businessType} onValueChange={(value) => handleInputChange("businessType", value)}>
                         <SelectTrigger className="bg-input border-border">
-                          <SelectValue placeholder="Select your business type" />
+                          <SelectValue placeholder={t('businessTypePlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="startup">Startup</SelectItem>
-                          <SelectItem value="small-business">Small Business</SelectItem>
-                          <SelectItem value="enterprise">Enterprise</SelectItem>
-                          <SelectItem value="agency">Marketing Agency</SelectItem>
-                          <SelectItem value="non-profit">Non-Profit</SelectItem>
-                          <SelectItem value="personal">Personal Project</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          <SelectItem value="small-business">{t('smallBusiness')}</SelectItem>
+                          <SelectItem value="enterprise">{t('enterprise')}</SelectItem>
+                          <SelectItem value="agency">{t('agency')}</SelectItem>
+                          <SelectItem value="non-profit">{t('nonprofit')}</SelectItem>
+                          <SelectItem value="personal">{t('freelancer')}</SelectItem>
+                          <SelectItem value="other">{t('other')}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="projectDetails">Project Details *</Label>
+                      <Label htmlFor="projectDetails">{t('projectDetails')} *</Label>
                       <Textarea
                         id="projectDetails"
                         value={formData.projectDetails}
                         onChange={(e) => handleInputChange("projectDetails", e.target.value)}
-                        placeholder="Tell us about your video editing needs, timeline, and goals..."
+                        placeholder={t('projectDetailsPlaceholder')}
                         rows={5}
                         required
                         className="bg-input border-border resize-none"
@@ -187,7 +188,7 @@ const Contact = () => {
                         "Submitting..."
                       ) : (
                         <>
-                          Submit Request
+                          {t('sendMessage')}
                           <Send className="ml-2 h-4 w-4" />
                         </>
                       )}
