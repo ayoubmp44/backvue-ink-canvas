@@ -6,9 +6,9 @@ export const translations = {
     contact: "Contact",
     
     // Hero Section
-    heroTitle: "Premium Video",
-    heroTitleSecond: "Editing Agency",
-    heroSubtitle: "Transform your raw footage into compelling stories that captivate audiences and drive results for your brand.",
+    heroTitle: "Premium Branding",
+    heroTitleSecond: "Agency",
+    heroSubtitle: "Transform your business into the next level that captivate audiences and drive results for your brand.",
     startProject: "Start Your Project",
     viewWork: "View Our Work",
     
