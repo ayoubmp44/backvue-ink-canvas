@@ -7,9 +7,7 @@ const Navigation = () => {
       <div className="glass-nav px-8 py-4">
         <div className="flex items-center">
           {/* Logo */}
-          <NavLink to="/" className="text-2xl font-bold gradient-text">
-            Backvue
-          </NavLink>
+          
         </div>
       </div>
     </nav>
