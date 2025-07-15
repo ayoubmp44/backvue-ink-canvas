@@ -6,12 +6,13 @@ export const translations = {
     contact: "اتصل بنا",
     
     // Hero Section
-    heroTitle: "تسويق موجه",
-    heroTitleSecond: "بالنتائج يحقق",
-    heroTitleThird: "التحويلات",
-    heroSubtitle: "قنوات تسويقية متكاملة من الفيديوهات الجذابة إلى صفحات الهبوط عالية التحويل وحملات إعلانية دقيقة. مصممة لرواد الأعمال الذين يقدرون النمو الحقيقي وليس فقط الإعجابات.",
-    startProject: "احصل على قمعك التسويقي",
-    viewWork: "شاهد الأعمال",
+    heroTitle: "خطوة جديدة",
+    heroTitleSecond: "كتفتح ليك الباب",
+    heroTitleThird: "لنجاح كبير",
+    heroSubtitle: "معانا، الأفكار كتولّي حقيقة، والفرص كتزيد. خدماتنا كتخدم ليك باش تحقق طموحاتك وتوصل بعيد.",
+    startProject: "بدا المشوار ديالك",
+    viewWork: "تفرج على الإنجازات",
+
     freeStrategy: "جلسة استراتيجية مجانية • نتائج مضمونة",
     
     // Services
