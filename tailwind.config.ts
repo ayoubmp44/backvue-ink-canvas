@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				sans: ['Montserrat', 'system-ui', 'sans-serif'],
 				arabic: ['IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
 			},
 			colors: {
