@@ -10,7 +10,7 @@ export const translations = {
     heroTitleSecond: "كتفتح ليك الباب",
     heroTitleThird: "لنجاح كبير",
     heroSubtitle: "معانا، الأفكار كتولّي حقيقة، والفرص كتزيد. خدماتنا كتخدم ليك باش تحقق طموحاتك وتوصل بعيد.",
-    startProject: "بدا المشوار ديالك",
+    startProject: "بدا دابا ",
     viewWork: "تفرج على الإنجازات",
 
     freeStrategy: "جلسة استراتيجية مجانية • نتائج مضمونة",
