@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { translations } from '@/lib/translations';
 
-type Language = 'ar';
+type Language = 'en' | 'ar';
 
 interface LanguageContextType {
   language: Language;
@@ -11,13 +11,8 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('ar');
-
-  useEffect(() => {
-    // Apply Arabic font when language is Arabic
-    document.documentElement.className = 'font-arabic';
-  }, [language]);
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>('en');
 
   const t = (key: string): string => {
     const keys = key.split('.');
@@ -30,8 +25,19 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return value || key;
   };
 
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    
+    // Apply font changes based on language
+    if (lang === 'ar') {
+      document.documentElement.className = document.documentElement.className.replace(/font-\w+/g, '') + ' font-arabic';
+    } else {
+      document.documentElement.className = document.documentElement.className.replace(/font-\w+/g, '') + ' font-sans';
+    }
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -39,7 +45,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
