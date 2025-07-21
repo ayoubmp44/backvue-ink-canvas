@@ -28,14 +28,14 @@ import {
 import { Button } from "@/components/ui/button";
 
 const menuItems = [
-  { title: "لوحة التحكم", url: "/admin", icon: LayoutDashboard },
-  { title: "العملاء والمشاريع", url: "/admin/clients", icon: Users },
-  { title: "المهام والمواعيد", url: "/admin/tasks", icon: CheckSquare },
-  { title: "وسائل التواصل", url: "/admin/social", icon: Smartphone },
-  { title: "المالية (MAD)", url: "/admin/finance", icon: DollarSign },
-  { title: "إدارة الفريق", url: "/admin/team", icon: UserCog },
-  { title: "التقارير والتحليلات", url: "/admin/analytics", icon: BarChart3 },
-  { title: "الإعدادات", url: "/admin/settings", icon: Settings },
+  { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
+  { title: "Clients & Projects", url: "/admin/clients", icon: Users },
+  { title: "Tasks & Deadlines", url: "/admin/tasks", icon: CheckSquare },
+  { title: "Social Media", url: "/admin/social", icon: Smartphone },
+  { title: "Finance (MAD)", url: "/admin/finance", icon: DollarSign },
+  { title: "Team Management", url: "/admin/team", icon: UserCog },
+  { title: "Analytics", url: "/admin/analytics", icon: BarChart3 },
+  { title: "Settings", url: "/admin/settings", icon: Settings },
 ];
 
 interface AdminSidebarProps {
@@ -82,7 +82,7 @@ export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
         <SidebarGroup>
           {!collapsed && (
             <SidebarGroupLabel className="text-muted-foreground text-sm font-medium mb-2">
-              القائمة الرئيسية
+              Main Menu
             </SidebarGroupLabel>
           )}
           
@@ -98,7 +98,7 @@ export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
                     >
                       <item.icon className="h-5 w-5 flex-shrink-0" />
                       {!collapsed && (
-                        <span className="mr-3 text-right">{item.title}</span>
+                        <span className="ml-3">{item.title}</span>
                       )}
                     </NavLink>
                   </SidebarMenuButton>
@@ -118,7 +118,7 @@ export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
             }`}
           >
             <LogOut className="h-5 w-5 flex-shrink-0" />
-            {!collapsed && <span className="mr-3">تسجيل الخروج</span>}
+            {!collapsed && <span className="ml-3">Sign Out</span>}
           </Button>
         </div>
       </SidebarContent>

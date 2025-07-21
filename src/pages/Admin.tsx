@@ -19,13 +19,13 @@ const Admin = () => {
     if (loginData.email === "admin@backvue.com" && loginData.password === "admin123") {
       setIsAuthenticated(true);
       toast({
-        title: "تم تسجيل الدخول بنجاح",
-        description: "مرحباً بك في لوحة التحكم!"
+        title: "Login successful",
+        description: "Welcome to the admin dashboard!"
       });
     } else {
       toast({
-        title: "فشل تسجيل الدخول",
-        description: "بيانات الدخول غير صحيحة. جرب admin@backvue.com / admin123",
+        title: "Login failed",
+        description: "Invalid credentials. Try admin@backvue.com / admin123",
         variant: "destructive"
       });
     }
@@ -36,13 +36,13 @@ const Admin = () => {
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <Card className="w-full max-w-md glass-card">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl gradient-text">إدارة Backvue</CardTitle>
-            <p className="text-muted-foreground">قم بتسجيل الدخول للوصول إلى لوحة التحكم</p>
+            <CardTitle className="text-2xl gradient-text">Backvue Admin</CardTitle>
+            <p className="text-muted-foreground">Sign in to access the admin dashboard</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">البريد الإلكتروني</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -54,22 +54,22 @@ const Admin = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">كلمة المرور</Label>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   type="password"
                   value={loginData.password}
                   onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                  placeholder="أدخل كلمة المرور"
+                  placeholder="Enter password"
                   className="bg-input border-border"
                   required
                 />
               </div>
               <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                تسجيل الدخول
+                Sign In
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                التجربة: admin@backvue.com / admin123
+                Demo: admin@backvue.com / admin123
               </p>
             </form>
           </CardContent>
