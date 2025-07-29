@@ -6,29 +6,52 @@ export const translations = {
     contact: "Contact",
     
     // Hero Section
-    heroTitle: "Premium Branding",
-    heroTitleSecond: "Agency",
-    heroSubtitle: "Transform your business into the next level that captivate audiences and drive results for your brand.",
-    startProject: "Start Your Project",
+    heroTitle: "Grow Your Business with",
+    heroTitleSecond: "Creative Digital Solutions",
+    heroSubtitle: "We help local brands in Morocco stand out through social media, design, and strategy.",
+    startProject: "Get a Free Audit",
     viewWork: "View Our Work",
     
-    // Services Section
-    whatWeDo: "What We Do",
-    servicesSubtitle: "Professional video editing services that bring your vision to life",
-    videoEditing: "Video Editing",
-    videoEditingDesc: "Professional video editing with cinematic quality and attention to detail.",
-    colorGrading: "Color Grading", 
-    colorGradingDesc: "Advanced color correction and grading to enhance visual storytelling.",
-    fastTurnaround: "Fast Turnaround",
-    fastTurnaroundDesc: "Quick delivery without compromising on quality or creative vision.",
-    premiumQuality: "Premium Quality",
-    premiumQualityDesc: "Industry-standard results that exceed expectations every time.",
+    // About Section
+    aboutTitle: "About Backvue",
+    aboutDesc: "Backvue is a digital agency focused on helping local Moroccan businesses build their brand and attract more customers online. We mix creativity with results, and our team handles everything from strategy to execution.",
     
-    // CTA Section
-    ctaTitle: "Ready to Create Something",
-    ctaTitleHighlight: " Amazing?",
-    ctaSubtitle: "Let's discuss your project and discover how we can bring your vision to life with professional video editing.",
-    scheduleCall: "Schedule Discovery Call",
+    // Services Section
+    whatWeDo: "Our Services",
+    servicesSubtitle: "Complete digital solutions for growing businesses",
+    socialMedia: "Social Media Management",
+    socialMediaDesc: "Professional social media strategies that engage your audience and grow your brand.",
+    paidAds: "Paid Advertising",
+    paidAdsDesc: "Facebook & Instagram ads that convert visitors into customers and drive real results.",
+    webDev: "Website Development",
+    webDevDesc: "Modern, responsive websites that showcase your brand and attract customers.",
+    branding: "Branding & Graphic Design",
+    brandingDesc: "Complete brand identity and stunning graphics that make your business memorable.",
+    
+    // Why Choose Section
+    whyChooseTitle: "Why Choose Backvue",
+    localTeam: "Local-focused team",
+    localTeamDesc: "We understand Moroccan market and local business needs",
+    affordable: "Affordable packages",
+    affordableDesc: "Professional services at prices that fit your budget",
+    fastDelivery: "Fast delivery",
+    fastDeliveryDesc: "Quick turnaround without compromising quality",
+    personalizedStrategy: "Personalized strategies",
+    personalizedStrategyDesc: "Custom solutions tailored to your specific business goals",
+    
+    // Featured Work
+    featuredWorkTitle: "Featured Work",
+    foodPackaging: "Food Packaging Brand",
+    clothingShop: "Local Clothing Shop", 
+    fitnessGym: "Fitness Gym Social Launch",
+    
+    // Testimonial
+    testimonialTitle: "What Our Clients Say",
+    testimonialText: "Backvue helped us build a strong social media presence in just one month. Highly recommend them for any local business!",
+    
+    // Final CTA Section
+    finalCtaTitle: "Let's Grow Your Business Together",
+    finalCtaButton: "Book Your Free Strategy Call",
     
     // Contact Page
     contactTitle: "Get In Touch",
